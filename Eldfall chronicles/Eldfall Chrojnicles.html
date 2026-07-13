@@ -14,14 +14,19 @@
         width: 400;
         height: 400px;
     }
+    input:checked{
+        margin: 5px;
+    }
 </style>
 <body>
-    
-<button onclick="Unosrc()">Create a party</button>
+<button id="unos_rc" onclick="Unosrc()">Create a party</button>
 <br><br>
 
+<div id="player"style="visibility: hidden;">
+    <input style="width: 45px;" id="poeni"  readonly type="number">Recruitment Points
+</div>
 
-<div class="container">
+<div id="cijela" style="visibility: hidden;" class="container">
   <div class="row">
     <div class="col-sm-3">
       <h4>Empire of Soga</h4>
@@ -37,149 +42,88 @@
           <option>Great Gaurd</option>
           <option>Seigen, of the Keshobarai</option>
         </select>
-    </div>
-        <div class="col-sm-1">
-      <h4>Coalition of Thenion</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-        <div class="col-sm-1">
-      <h4>Helian League</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-        <div class="col-sm-1">
-      <h4>Sand Kindom</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-            <div class="col-sm-1">
-      <h4>Goblin Wartribes</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>      
-        </select>
-    </div>
-            <div class="col-sm-1">
-      <h4>Oni Clans</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-            <div class="col-sm-1">
-      <h4>Neutral and Semi-Neutral</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-            <div class="col-sm-1">
-      <h4>Creatures</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
-            <div class="col-sm-1">
-      <h4>Undead</h4>
-      <select name="Eos" id="EOS">
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-          <option></option>
-      </select>
-    </div>
+    </div>  
 </div>
 
 <div id="divpopis"></div>
 
-<input id="prikaz" type="checkbox"><img>
 
 
 <script>
+    const obj = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":10,"Kitsune Spellmaiden":16,"Musha Bowmaster":25,
+    "Musha Blademaster":
+
+    };
+    let rc
     function Unosrc(){
-        let rc= Number(prompt("Unesi Recruitment Points"))
+        rc=Number(prompt("Unesi Recruitment Points"))
+        let player=document.getElementById("player").style=visibility="visible"
+        let poeni=document.getElementById("poeni").value=rc
+        let remove=document.getElementById("unos_rc").style.visibility="hidden"
+        let cijela=document.getElementById("cijela").style=visibility="visible"
         console.log(rc)
     }
-
+    let popis        
+    let counter=0
     function Odabran(e){
-        let popis=document.getElementById("EOS").value
+        popis=document.getElementById("EOS").value
         let divpopis=document.getElementById("divpopis")
         let img_naz=popis.substring(0,4)
-        console.log(popis.substring(0,4))
-        divpopis.innerHTML+="<div>"+popis+" <img widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div>"
+        console.log(popis)
+        for (const [key, value] of Object.entries(obj)) {
+            if(key==popis){
+                console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+                rc=rc-value
+                let poeni=document.getElementById("poeni").value=rc
+            }
+        }
+        console.log(rc)
+        counter++
+        divpopis.innerHTML+="<div id='"+counter+"'>"+popis+"&emsp; <img widith='100px' height='100px' src='Img/"+img_naz+".jpg'><input type='checkbox'checked onchange='prikaz("+counter+")'></div>"
+    }
+    
+    function prikaz(br){
+        let pr=document.getElementById(br)
+        let pr_bris=pr.innerHTML.substring(0,15).trim()
+        console.log(pr.innerHTML.substring(0,14).trim())
+        pr.remove()
+
+        for (const [key, value] of Object.entries(obj)) {
+            if(key==pr_bris){
+                console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
+                rc=rc+value
+                let poeni=document.getElementById("poeni").value=rc
+            }
+        }
+
     }
     
 
+// Constructor function for Person objects
+function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {
+  this.name = name;
+  this.affiliation = affiliation;
+  this.size = size;
+  this.stamina = stamina;
+  this.move_sp = move_sp;
+  this.armor = armor;
+  this.health = health;
+  this.off = off;         
+  this.def = def;
+  this.acc = acc;
+  this.int = int;
+  this.ag = ag;
+  this.t = t;
+  this.m = m;
+  this.limit = limit;
+  this.cost = cost;
+
+
+
+
+  this.nationality = "English";
+}
+const Char1=Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
 
 </script>
 

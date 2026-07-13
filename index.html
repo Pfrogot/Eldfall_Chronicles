@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        margin: 10px;
+    }
+    img:hover{
+        width: 400;
+        height: 400px;
+    }
+</style>
+<body>
+    
+<button onclick="Unosrc()">Create a party</button>
+<br><br>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <h4>Empire of Soga</h4>
+      <select onchange="Odabran(this)" name="Eos" id="EOS">
+          <option hidden selected>Empire of Soga</option>
+          <option>Clab Champion</option>
+          <option>Bushi Attendant</option>
+          <option>Onitaishi</option>
+          <option>Kitsune Spellmaiden</option>
+          <option>Musha Bowmaster</option>
+          <option>Musha Blademaster</option>
+          <option>Scolar of the True Word</option>
+          <option>Great Gaurd</option>
+          <option>Seigen, of the Keshobarai</option>
+        </select>
+    </div>
+        <div class="col-sm-1">
+      <h4>Coalition of Thenion</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+        <div class="col-sm-1">
+      <h4>Helian League</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+        <div class="col-sm-1">
+      <h4>Sand Kindom</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+            <div class="col-sm-1">
+      <h4>Goblin Wartribes</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>      
+        </select>
+    </div>
+            <div class="col-sm-1">
+      <h4>Oni Clans</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+            <div class="col-sm-1">
+      <h4>Neutral and Semi-Neutral</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+            <div class="col-sm-1">
+      <h4>Creatures</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+            <div class="col-sm-1">
+      <h4>Undead</h4>
+      <select name="Eos" id="EOS">
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+          <option></option>
+      </select>
+    </div>
+</div>
+
+<div id="divpopis"></div>
+
+<input id="prikaz" type="checkbox"><img>
+
+
+<script>
+    function Unosrc(){
+        let rc= Number(prompt("Unesi Recruitment Points"))
+        console.log(rc)
+    }
+
+    function Odabran(e){
+        let popis=document.getElementById("EOS").value
+        let divpopis=document.getElementById("divpopis")
+        let img_naz=popis.substring(0,4)
+        console.log(popis.substring(0,4))
+        divpopis.innerHTML+="<div>"+popis+" <img widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div>"
+    }
+    
+
+
+</script>
+
+</body>
+</html>

@@ -80,29 +80,38 @@
         let img_naz=popis
         for (const [key, value] of Object.entries(obj)) {
             if(key==popis){
-                console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
                 rc=rc-value
                 let poeni=document.getElementById("poeni").value=rc
             }
         }
-        console.log(rc)
+        
         counter++
-        divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+")'></div></div>"
+        divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")' id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+")'></div></div>"
     }
     
     function prikaz(br,dr){
         let pr=document.getElementById(br)   
-        console.log(dr)
         pr.remove()
 
         for (const [key, value] of Object.entries(obj)) {
             if(key==dr){
-                console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
                 rc=rc+value
                 let poeni=document.getElementById("poeni").value=rc
             }
         }
 
+    }
+    let perv=0
+    function swap(naz){
+        if(perv==1){
+            zam=document.getElementById(naz).src="Img/"+naz+".jpg"
+            perv=0
+        }
+        else{
+            zam=document.getElementById(naz).src="Img/"+naz+"1.jpg"
+            perv=1
+        }
+        
     }
     
 

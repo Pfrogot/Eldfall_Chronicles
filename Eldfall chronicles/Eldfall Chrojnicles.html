@@ -15,15 +15,26 @@
         height: 400px;
     }
     input:checked{
-        margin: 5px;
+        margin:    10px;
     }
+    .flex-container{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 400px;
+        
+    }
+    label{
+        width: 100px;
+
+}
 </style>
 <body>
 <button id="unos_rc" onclick="Unosrc()">Create a party</button>
 <br><br>
 
 <div id="player"style="visibility: hidden;">
-    <input style="width: 45px;" id="poeni"  readonly type="number">Recruitment Points
+    <input style="width: 50px;" id="poeni"  readonly type="number">Recruitment Points
 </div>
 
 <div id="cijela" style="visibility: hidden;" class="container">
@@ -40,7 +51,7 @@
           <option>Musha Blademaster</option>
           <option>Scolar of the True Word</option>
           <option>Great Gaurd</option>
-          <option>Seigen, of the Keshobarai</option>
+          <option >Seigen, of the Keshobarai</option>
         </select>
     </div>  
 </div>
@@ -50,8 +61,8 @@
 
 
 <script>
-    const obj = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":10,"Kitsune Spellmaiden":16,"Musha Bowmaster":25,
-    "Musha Blademaster":20
+    const obj = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":21,"Kitsune Spellmaiden":16,"Musha Bowmaster":19,
+    "Musha Blademaster":17, "Scolar of the True Word":19,"Great Gaurd":23,"Seigen, of the Keshobarai":28
     };
     let rc
     function Unosrc(){
@@ -60,15 +71,13 @@
         let poeni=document.getElementById("poeni").value=rc
         let remove=document.getElementById("unos_rc").style.visibility="hidden"
         let cijela=document.getElementById("cijela").style=visibility="visible"
-        console.log(rc)
     }
     let popis        
     let counter=0
     function Odabran(e){
         popis=document.getElementById("EOS").value
         let divpopis=document.getElementById("divpopis")
-        let img_naz=popis.substring(0,4)
-        console.log(popis)
+        let img_naz=popis
         for (const [key, value] of Object.entries(obj)) {
             if(key==popis){
                 console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
@@ -78,17 +87,16 @@
         }
         console.log(rc)
         counter++
-        divpopis.innerHTML+="<div id='"+counter+"'>"+popis+"&emsp; <img widith='100px' height='100px' src='Img/"+img_naz+".jpg'><input type='checkbox'checked onchange='prikaz("+counter+")'></div>"
+        divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+")'></div></div>"
     }
     
-    function prikaz(br){
-        let pr=document.getElementById(br)
-        let pr_bris=pr.innerHTML.substring(0,15).trim()
-        console.log(pr.innerHTML.substring(0,14).trim())
+    function prikaz(br,dr){
+        let pr=document.getElementById(br)   
+        console.log(dr)
         pr.remove()
 
         for (const [key, value] of Object.entries(obj)) {
-            if(key==pr_bris){
+            if(key==dr){
                 console.log(`${key} ${value}`); // "a 5", "b 7", "c 9"
                 rc=rc+value
                 let poeni=document.getElementById("poeni").value=rc

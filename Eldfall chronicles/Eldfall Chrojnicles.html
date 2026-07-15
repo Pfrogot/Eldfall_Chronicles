@@ -41,7 +41,7 @@
   <div class="row">
     <div class="col-sm-3">
       <h4>Empire of Soga</h4>
-      <select onchange="Odabran(this)" name="Eos" id="EOS">
+      <select onchange="Odabran('Eos')" name="Eos" id="EOS">
           <option hidden selected>Empire of Soga</option>
           <option>Clab Champion</option>
           <option>Bushi Attendant</option>
@@ -51,9 +51,26 @@
           <option>Musha Blademaster</option>
           <option>Scolar of the True Word</option>
           <option>Great Gaurd</option>
-          <option >Seigen, of the Keshobarai</option>
+          <option>Seigen, of the Keshobarai</option>
         </select>
-    </div>  
+    </div> 
+
+    <div class="col-sm-3">
+      <h4>Helian League</h4>
+      <select onchange="Odabran('Hl')" name="Hl" id="HL">
+          <option hidden selected>Helian league</option>
+          <option>Expeditionardy Hireophant</option>
+          <option>Citadel Guard</option>
+          <option>Flameshaper</option>
+          <option>Helrin Expatriate</option>
+          <option>Flameweaver Errant</option>
+          <option>Flameweaver Noble</option>
+          <option>Paladin of the order</option>
+          <option>Eonian Runner</option>
+          <option>Anari, Erudite Prodigy</option>
+        </select>
+    </div> 
+    </div> 
 </div>
 
 <div id="divpopis"></div>
@@ -61,9 +78,19 @@
 
 
 <script>
-    const obj = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":21,"Kitsune Spellmaiden":16,"Musha Bowmaster":19,
+    const Eos = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":21,"Kitsune Spellmaiden":16,"Musha Bowmaster":19,
     "Musha Blademaster":17, "Scolar of the True Word":19,"Great Gaurd":23,"Seigen, of the Keshobarai":28
     };
+
+    const Hl = { "Expeditionardy Hireophant": 23, "Citadel Guard": 18,"Flameshaper":15,"Helrin Expatriate":16,"Flameweaver Errant":21,
+    "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari, Erudite Prodigy":28
+    };  
+    
+    const Cot = { "Expeditionardy Hireophant": 23, "Citadel Guard": 18,"Flameshaper":15,"Helrin Expatriate":16,"Flameweaver Errant":21,
+    "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari, Erudite Prodigy":28
+    };
+
+
     let rc
     function Unosrc(){
         rc=Number(prompt("Unesi Recruitment Points"))
@@ -72,33 +99,67 @@
         let remove=document.getElementById("unos_rc").style.visibility="hidden"
         let cijela=document.getElementById("cijela").style=visibility="visible"
     }
-    let popis        
+
+    let popis      
+    let divpopis 
+    let img_naz 
     let counter=0
     function Odabran(e){
-        popis=document.getElementById("EOS").value
-        let divpopis=document.getElementById("divpopis")
-        let img_naz=popis
-        for (const [key, value] of Object.entries(obj)) {
-            if(key==popis){
-                rc=rc-value
-                let poeni=document.getElementById("poeni").value=rc
-            }
-        }
-        
-        counter++
-        divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")' id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+")'></div></div>"
-    }
-    
-    function prikaz(br,dr){
+        switch(e) {
+            case "Eos":
+                popis=document.getElementById("EOS").value
+                divpopis=document.getElementById("divpopis")
+                img_naz=popis
+                for (const [key, value] of Object.entries(Eos)) {
+                    if(key==popis){
+                        rc=rc-value
+                        let poeni=document.getElementById("poeni").value=rc
+                    }
+                }
+                counter++
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+            break;
+            case "Hl":
+                popis=document.getElementById("HL").value
+                divpopis=document.getElementById("divpopis")
+                img_naz=popis
+                for (const [key, value] of Object.entries(Hl)) {
+                    if(key==popis){
+                        rc=rc-value
+                        let poeni=document.getElementById("poeni").value=rc
+                    }
+                }
+                counter++
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+            break;
+            default:     
+}
+}
+    function prikaz(br,dr,e){
         let pr=document.getElementById(br)   
         pr.remove()
-
-        for (const [key, value] of Object.entries(obj)) {
+            switch(e) {
+            case "Eos":
+            for (const [key, value] of Object.entries(Eos)) {
             if(key==dr){
                 rc=rc+value
                 let poeni=document.getElementById("poeni").value=rc
             }
-        }
+            }
+            break;
+            
+            case "Hl":
+            for (const [key, value] of Object.entries(Hl)) {
+            if(key==dr){
+                rc=rc+value
+                let poeni=document.getElementById("poeni").value=rc
+            }
+            }
+            break;
+            default:     
+}
+
+
 
     }
     let perv=0
@@ -115,7 +176,7 @@
     }
     
 
-// Constructor function for Person objects
+// Constructor function for Person Eosects
 function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {
   this.name = name;
   this.affiliation = affiliation;

@@ -179,7 +179,7 @@
                         rc=rc-value
                         let poeni=document.getElementById("poeni").value=rc
                     }
-                                        if(rc-value<=0){
+                        if(rc<=0){
                             let zad=document.getElementById("EOS").disabled=true
                                 zad=document.getElementById("HL").disabled=true
                                 zad=document.getElementById("COT").disabled=true
@@ -187,6 +187,9 @@
                 }
                 }
                 counter++
+                skup.push(popis)
+                localStorage.setItem("pr", skup);
+                localStorage.setItem("Brojac", rc);
                 divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
             break;
             case "Cot":
@@ -198,7 +201,7 @@
                         rc=rc-value
                         let poeni=document.getElementById("poeni").value=rc
                     }
-                                        if(rc-value<=0){
+                                        if(rc<=0){
                             let zad=document.getElementById("EOS").disabled=true
                                 zad=document.getElementById("HL").disabled=true
                                 zad=document.getElementById("COT").disabled=true
@@ -206,6 +209,9 @@
                 }
                 }
                 counter++
+                skup.push(popis)
+                localStorage.setItem("pr", skup);
+                localStorage.setItem("Brojac", rc);
                 if(popis=="Slayer Dragon Mounted-Lupus Rex"){
                 divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'> <img onclick='swap("+'"'+'Lupus Rex'+'"'+")'id='Lupus Rex' widith='100px' height='100px' src='Img/Lupus Rex.jpg'>  </div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
                 }
@@ -222,7 +228,7 @@
                         rc=rc-value
                         let poeni=document.getElementById("poeni").value=rc
                     }
-                                        if(rc-value<=0){
+                                        if(rc<=0){
                             let zad=document.getElementById("EOS").disabled=true
                                 zad=document.getElementById("HL").disabled=true
                                 zad=document.getElementById("COT").disabled=true
@@ -230,6 +236,9 @@
                 }
                 }
                 counter++
+                skup.push(popis)
+                localStorage.setItem("pr", skup);
+                localStorage.setItem("Brojac", rc);
                 divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
             break;    
             default:     

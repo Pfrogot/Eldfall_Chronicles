@@ -56,7 +56,7 @@
           <option>Musha Blademaster</option>
           <option>Scolar of the True Word</option>
           <option>Great Gaurd</option>
-          <option>Seigen, of the Keshobarai</option>
+          <option>Seigen of the Keshobarai</option>
         </select>
     </div> 
 
@@ -72,7 +72,7 @@
           <option>Flameweaver Noble</option>
           <option>Paladin of the order</option>
           <option>Eonian Runner</option>
-          <option>Anari, Erudite Prodigy</option>
+          <option>Anari Erudite Prodigy</option>
         </select>
     </div>  
 
@@ -88,7 +88,7 @@
           <option>Slayer Dragon</option>
           <option>Bladebretheren Elite</option>
           <option>Hired Blade</option>
-          <option>Tharos, One-eyed wolf</option>
+          <option>Tharos One-eyed wolf</option>
         </select>
     </div> 
         <div class="col-sm-2">
@@ -101,7 +101,7 @@
           <option>Faris Outrider</option>
           <option>Spelldancer VoidCaster</option>
           <option>Spelldancer Aeroturge</option>
-          <option>Na ra, Veil watcher</option>
+          <option>Na ra Veil watcher</option>
         </select>
     </div> 
 
@@ -114,21 +114,22 @@
 <button id="fokus" onclick="fokus()">Fokus</button>
 
 
+
 <script>
     const Eos = { "Clab Champion": 21, "Bushi Attendant": 13,"Onitaishi":21,"Kitsune Spellmaiden":16,"Musha Bowmaster":19,
-    "Musha Blademaster":17, "Scolar of the True Word":19,"Great Gaurd":23,"Seigen, of the Keshobarai":28
+    "Musha Blademaster":17, "Scolar of the True Word":19,"Great Gaurd":23,"Seigen of the Keshobarai":28
     };
 
     const Hl = { "Expeditionardy Hireophant": 23, "Citadel Guard": 18,"Flameshaper":15,"Helrin Expatriate":16,"Flameweaver Errant":21,
-    "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari, Erudite Prodigy":28
+    "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari Erudite Prodigy":28
     };  
     
     const Cot = { "Nightshade": 22, "Rangers-Guild Hunter": 19,"Thenrin Swashbuckler":16,"Night-Temple Priestess":21,"Slayer Dragon Mounted-Lupus Rex":22,
-    "Slayer Dragon":17, "Bladebretheren Elite":23,"Hired Blade":17,"Tharos, One-eyed wolf":28
+    "Slayer Dragon":17, "Bladebretheren Elite":23,"Hired Blade":17,"Tharos One-eyed wolf":28
     };
 
     const Sk = { "Vizier of Conjurations": 22, "Academy Expeditioner": 18,"Taskmage Explorer":19,"Faris Outrider":18,"Spelldancer VoidCaster":17,
-    "Spelldancer Aeroturge":15, "Na ra, Veil watcher":28
+    "Spelldancer Aeroturge":15, "Na ra Veil watcher":28
     };
 
     const forma=document.getElementById('forma')
@@ -235,8 +236,17 @@
 }
 }
     function prikaz(br,dr,e){
-        let pr=document.getElementById(br)   
+        let pr=document.getElementById(br)
         pr.remove()
+        console.log(skup)
+                for (let i = 0; i <= skup.length; i++) {
+                    if(dr==skup[i]){
+                        skup.splice(i,1)
+                        localStorage.removeItem("pr")
+                    }
+        }
+        localStorage.setItem("pr", skup);
+
             switch(e) {
             case "Eos":
             for (const [key, value] of Object.entries(Eos)) {
@@ -251,6 +261,7 @@
                                 zad=document.getElementById("COT").disabled=false
                                 zad=document.getElementById("SK").disabled=false
                 }
+                Number(localStorage.setItem("Brojac",rc))
             break;
             
             case "Hl":
@@ -297,10 +308,8 @@
             break;
             default:     
 }
+                }
 
-
-
-    }
     let perv=0
     function swap(naz){
         if(perv==1){
@@ -323,12 +332,47 @@
         function Save(){
         let player=document.getElementById("player").style=visibility="visible"
         let poeni=document.getElementById("poeni").value=localStorage.getItem("Brojac");
-        rc=localStorage.getItem("Brojac")
+        rc=Number(localStorage.getItem("Brojac"))
         let remove=document.getElementById("unos_rc").style.visibility="hidden"
         let cijela=document.getElementById("cijela").style=visibility="visible"
-    }
-
-    
+        let e
+        if(localStorage.getItem("pr")==null){
+            skup=[]
+            console.log("Nema nista")
+        }
+        else{
+        for(i=0;i<localStorage.getItem("pr").split(",").length;i++){
+            skup.push(localStorage.getItem("pr").split(",")[i])
+        }
+            for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
+            popis=localStorage.getItem("pr").split(",")[i]
+            counter++
+            for (const [key, value] of Object.entries(Sk)) {
+                if(key==popis){
+                    e='Sk'
+            }
+            }
+            for (const [key, value] of Object.entries(Eos)) {
+                if(key==popis){
+                    e='Eos'
+            }
+            }
+            for (const [key, value] of Object.entries(Cot)) {
+                if(key==popis){
+                    e='Cot'
+            }
+            }
+            for (const [key, value] of Object.entries(Hl)) {
+                if(key==popis){
+                    e='Hl'
+            }
+            }
+            if(localStorage.getItem("pr")!=[]){
+            document.getElementById("divpopis").innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+popis+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"            
+            }
+        }
+}
+}  
         function fokus(){
             window.open("file:///C:/Users/neno/Documents/Eldfall%20chronicles/pr.html")
  
@@ -353,8 +397,7 @@ function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,in
   this.m = m;
   this.limit = limit;
   this.cost = cost;
-
-
+  this.race = "Human";
 
 
   this.nationality = "English";

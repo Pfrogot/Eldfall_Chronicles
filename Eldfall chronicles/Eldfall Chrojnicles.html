@@ -21,25 +21,30 @@
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        width: 400px;
+        width: 6500px;
         
     }
     label{
         width: 100px;
+    }
+    h4{
+        font-size: 17px;
+    }
 
-}
+
 </style>
 <body>
 <button id="unos_rc" onclick="Unosrc()">Create a party</button>
 <br><br>
 
-<div id="player"style="visibility: hidden;">
-    <input style="width: 50px;" id="poeni"  readonly type="number">Recruitment Points
+<div class="tocnost" id="player"style="visibility: hidden;">
+    <input  type="number" style="width: 50px;" id="poeni" readonly>
+    <label>Recruitment Points</label>
 </div>
 
 <div id="cijela" style="visibility: hidden;" class="container">
   <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <h4>Empire of Soga</h4>
       <select onchange="Odabran('Eos')" name="Eos" id="EOS">
           <option hidden selected>Empire of Soga</option>
@@ -55,7 +60,7 @@
         </select>
     </div> 
 
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <h4>Helian League</h4>
       <select onchange="Odabran('Hl')" name="Hl" id="HL">
           <option hidden selected>Helian league</option>
@@ -69,12 +74,44 @@
           <option>Eonian Runner</option>
           <option>Anari, Erudite Prodigy</option>
         </select>
+    </div>  
+
+    <div class="col-sm-3">
+      <h4>Coalition of Thenion</h4>
+      <select onchange="Odabran('Cot')" name="Cot" id="COT">
+          <option hidden selected>Coalition of Thenion</option>
+          <option>Nightshade</option>
+          <option>Rangers-Guild Hunter</option>
+          <option>Thenrin Swashbuckler</option>
+          <option>Night-Temple Priestess</option>
+          <option>Slayer Dragon Mounted-Lupus Rex</option>
+          <option>Slayer Dragon</option>
+          <option>Bladebretheren Elite</option>
+          <option>Hired Blade</option>
+          <option>Tharos, One-eyed wolf</option>
+        </select>
     </div> 
+        <div class="col-sm-2">
+      <h4>Sand Kingdoms</h4>
+      <select onchange="Odabran('Sk')" name="Sk" id="SK">
+          <option hidden selected>Sand Kingdoms</option>
+          <option>Vizier of Conjurations</option>
+          <option>Academy Expeditioner</option>
+          <option>Taskmage Explorer</option>
+          <option>Faris Outrider</option>
+          <option>Spelldancer VoidCaster</option>
+          <option>Spelldancer Aeroturge</option>
+          <option>Na ra, Veil watcher</option>
+        </select>
     </div> 
+
+
+    </div>
 </div>
 
 <div id="divpopis"></div>
-
+<button id="predaj" onclick="predaj()">Load Save</button>
+<button id="fokus" onclick="fokus()">Fokus</button>
 
 
 <script>
@@ -86,11 +123,15 @@
     "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari, Erudite Prodigy":28
     };  
     
-    const Cot = { "Expeditionardy Hireophant": 23, "Citadel Guard": 18,"Flameshaper":15,"Helrin Expatriate":16,"Flameweaver Errant":21,
-    "Flameweaver Noble":21, "Paladin of the order":22,"Eonian Runner":17,"Anari, Erudite Prodigy":28
+    const Cot = { "Nightshade": 22, "Rangers-Guild Hunter": 19,"Thenrin Swashbuckler":16,"Night-Temple Priestess":21,"Slayer Dragon Mounted-Lupus Rex":22,
+    "Slayer Dragon":17, "Bladebretheren Elite":23,"Hired Blade":17,"Tharos, One-eyed wolf":28
     };
 
+    const Sk = { "Vizier of Conjurations": 22, "Academy Expeditioner": 18,"Taskmage Explorer":19,"Faris Outrider":18,"Spelldancer VoidCaster":17,
+    "Spelldancer Aeroturge":15, "Na ra, Veil watcher":28
+    };
 
+    const forma=document.getElementById('forma')
     let rc
     function Unosrc(){
         rc=Number(prompt("Unesi Recruitment Points"))
@@ -99,11 +140,11 @@
         let remove=document.getElementById("unos_rc").style.visibility="hidden"
         let cijela=document.getElementById("cijela").style=visibility="visible"
     }
-
     let popis      
     let divpopis 
     let img_naz 
     let counter=0
+    let skup=[]
     function Odabran(e){
         switch(e) {
             case "Eos":
@@ -112,12 +153,21 @@
                 img_naz=popis
                 for (const [key, value] of Object.entries(Eos)) {
                     if(key==popis){
+                    if(rc-value<=0){
+                            let zad=document.getElementById("EOS").disabled=true
+                                zad=document.getElementById("HL").disabled=true
+                                zad=document.getElementById("COT").disabled=true
+                                zad=document.getElementById("SK").disabled=true
+                }
                         rc=rc-value
                         let poeni=document.getElementById("poeni").value=rc
                     }
-                }
+                }                
                 counter++
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>" 
+                skup.push(popis)
+                localStorage.setItem("pr", skup);
+                localStorage.setItem("Brojac", rc);
             break;
             case "Hl":
                 popis=document.getElementById("HL").value
@@ -128,10 +178,59 @@
                         rc=rc-value
                         let poeni=document.getElementById("poeni").value=rc
                     }
+                                        if(rc-value<=0){
+                            let zad=document.getElementById("EOS").disabled=true
+                                zad=document.getElementById("HL").disabled=true
+                                zad=document.getElementById("COT").disabled=true
+                                zad=document.getElementById("SK").disabled=true
+                }
                 }
                 counter++
                 divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
             break;
+            case "Cot":
+                popis=document.getElementById("COT").value
+                divpopis=document.getElementById("divpopis")
+                img_naz=popis
+                for (const [key, value] of Object.entries(Cot)) {
+                    if(key==popis){
+                        rc=rc-value
+                        let poeni=document.getElementById("poeni").value=rc
+                    }
+                                        if(rc-value<=0){
+                            let zad=document.getElementById("EOS").disabled=true
+                                zad=document.getElementById("HL").disabled=true
+                                zad=document.getElementById("COT").disabled=true
+                                zad=document.getElementById("SK").disabled=true
+                }
+                }
+                counter++
+                if(popis=="Slayer Dragon Mounted-Lupus Rex"){
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'> <img onclick='swap("+'"'+'Lupus Rex'+'"'+")'id='Lupus Rex' widith='100px' height='100px' src='Img/Lupus Rex.jpg'>  </div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                }
+                else{
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                }
+            break;
+            case "Sk":
+                popis=document.getElementById("SK").value
+                divpopis=document.getElementById("divpopis")
+                img_naz=popis
+                for (const [key, value] of Object.entries(Sk)) {
+                    if(key==popis){
+                        rc=rc-value
+                        let poeni=document.getElementById("poeni").value=rc
+                    }
+                                        if(rc-value<=0){
+                            let zad=document.getElementById("EOS").disabled=true
+                                zad=document.getElementById("HL").disabled=true
+                                zad=document.getElementById("COT").disabled=true
+                                zad=document.getElementById("SK").disabled=true
+                }
+                }
+                counter++
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+            break;    
             default:     
 }
 }
@@ -146,6 +245,12 @@
                 let poeni=document.getElementById("poeni").value=rc
             }
             }
+                            if(rc>0){
+                            let zad=document.getElementById("EOS").disabled=false
+                                zad=document.getElementById("HL").disabled=false
+                                zad=document.getElementById("COT").disabled=false
+                                zad=document.getElementById("SK").disabled=false
+                }
             break;
             
             case "Hl":
@@ -155,6 +260,40 @@
                 let poeni=document.getElementById("poeni").value=rc
             }
             }
+                            if(rc>0){
+                            let zad=document.getElementById("EOS").disabled=false
+                                zad=document.getElementById("HL").disabled=false
+                                zad=document.getElementById("COT").disabled=false
+                                zad=document.getElementById("SK").disabled=false
+                }
+            break;
+            case "Cot":
+            for (const [key, value] of Object.entries(Cot)) {
+            if(key==dr){
+                rc=rc+value
+                let poeni=document.getElementById("poeni").value=rc
+            }
+            }
+                            if(rc>0){
+                            let zad=document.getElementById("EOS").disabled=false
+                                zad=document.getElementById("HL").disabled=false
+                                zad=document.getElementById("COT").disabled=false
+                                zad=document.getElementById("SK").disabled=false
+                }
+            break;
+            case "Sk":
+            for (const [key, value] of Object.entries(Sk)) {
+            if(key==dr){
+                rc=rc+value
+                let poeni=document.getElementById("poeni").value=rc
+            }
+            }
+                            if(rc>0){
+                            let zad=document.getElementById("EOS").disabled=false
+                                zad=document.getElementById("HL").disabled=false
+                                zad=document.getElementById("COT").disabled=false
+                                zad=document.getElementById("SK").disabled=false
+                }
             break;
             default:     
 }
@@ -175,6 +314,26 @@
         
     }
     
+    function predaj(){
+        document.getElementById("divpopis").innerHTML += localStorage.getItem("Brojac");
+        document.getElementById("divpopis").innerHTML += localStorage.getItem("pr");
+            Save()  
+     }
+
+        function Save(){
+        let player=document.getElementById("player").style=visibility="visible"
+        let poeni=document.getElementById("poeni").value=localStorage.getItem("Brojac");
+        rc=localStorage.getItem("Brojac")
+        let remove=document.getElementById("unos_rc").style.visibility="hidden"
+        let cijela=document.getElementById("cijela").style=visibility="visible"
+    }
+
+    
+        function fokus(){
+            window.open("file:///C:/Users/neno/Documents/Eldfall%20chronicles/pr.html")
+ 
+     }
+
 
 // Constructor function for Person Eosects
 function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {

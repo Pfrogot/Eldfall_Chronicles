@@ -298,10 +298,10 @@
     function lociraj(){
         console.log(localStorage.getItem("Desc"))
         document.getElementById(localStorage.getItem("Desc")).scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById(localStorage.getItem("Desc")).style.textDecoration = "underline";
+        document.getElementById(localStorage.getItem("Desc")).style.border = "1px solid red";
         document.getElementById(localStorage.getItem("Desc")).style.color = "red";
         setTimeout(()=> {
-        document.getElementById(localStorage.getItem("Desc")).style.textDecoration = "none";
+        document.getElementById(localStorage.getItem("Desc")).style.border = "none";
         document.getElementById(localStorage.getItem("Desc")).style.color = "black";
         }, 3000);
     }

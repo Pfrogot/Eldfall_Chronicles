@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+        margin: 10px;
+    }
+    img:hover{
+        width: 400;
+        height: 400px;
+    }
+    input:checked{
+        margin:    10px;
+    }
+    .flex-container{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        width: 100%;
+        border: 1px solid black;
+        
+    }
+    p{
+        width: 120px;
+        
+    }
+    h4{
+        font-size: 17px;
+    }
+    table,tr{
+        border: 1px solid black;
+        width: 130px;
+        height: 33px;
+    }
+    .naslov{
+        border-bottom: 1px solid red;
+    }
+
+</style>
+<body>
+    <button onclick="Ucitaj()">Učitaj</button>
+    <div id="divpopis"></div>
+
+
+    <table><tr><td class="naslov">Traits</td></tr><tr><td></td></tr><tr><th rowspan="2">Tobias</th></tr></table>
+<script>
+   let skup=[]
+   let naz
+   function Ucitaj(){
+   for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
+       skup.push(localStorage.getItem("pr").split(",")[i]);
+       naz=localStorage.getItem("pr").split(",")[i];
+
+       document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
+        "<div><table><tr><td>Traits</td></tr><tr><td></td></tr><tr><th rowspan='2'>Tobias</th></tr></table></div>"+
+        "<div><table><tr><td>Skills</td></tr><tr><td></td></tr><tr><th rowspan='2'></th></tr></table></div>"+
+        "<div><table><tr><td>Spellcraft/Combat Art</td></tr><tr><td></td></tr><tr><th rowspan='2'></th></tr></table></div>"+
+        
+        "</div>"           
+            
+   }
+   console.log(skup)
+
+}
+</script>
+</body>
+</html>

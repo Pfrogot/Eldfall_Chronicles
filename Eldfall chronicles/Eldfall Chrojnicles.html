@@ -24,8 +24,8 @@
         width: 6500px;
         
     }
-    label{
-        width: 100px;
+    p{
+        width: 120px;
     }
     h4{
         font-size: 17px;
@@ -110,8 +110,9 @@
 </div>
 
 <div id="divpopis"></div>
-<button id="predaj" onclick="predaj()">Load Save</button>
+<button id="load" onclick="load()">Load Save</button>
 <button id="fokus" onclick="fokus()">Fokus</button>
+<button id="predaj" style="visibility:hidden;" onclick="predaj()">Predaj</button>
 
 
 
@@ -136,10 +137,13 @@
     let rc
     function Unosrc(){
         rc=Number(prompt("Unesi Recruitment Points"))
-        let player=document.getElementById("player").style=visibility="visible"
+
         let poeni=document.getElementById("poeni").value=rc
         let remove=document.getElementById("unos_rc").style.visibility="hidden"
-        let cijela=document.getElementById("cijela").style=visibility="visible"
+        let load=document.getElementById("load").style.visibility="hidden"
+        let player=document.getElementById("player").style.visibility="visible"
+        let cijela=document.getElementById("cijela").style.visibility="visible"
+        let predaja=document.getElementById("predaj").style.visibility="visible"
     }
     let popis      
     let divpopis 
@@ -165,7 +169,7 @@
                     }
                 }                
                 counter++
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>" 
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>" 
                 skup.push(popis)
                 localStorage.setItem("pr", skup);
                 localStorage.setItem("Brojac", rc);
@@ -190,7 +194,7 @@
                 skup.push(popis)
                 localStorage.setItem("pr", skup);
                 localStorage.setItem("Brojac", rc);
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
             break;
             case "Cot":
                 popis=document.getElementById("COT").value
@@ -213,10 +217,10 @@
                 localStorage.setItem("pr", skup);
                 localStorage.setItem("Brojac", rc);
                 if(popis=="Slayer Dragon Mounted-Lupus Rex"){
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'> <img onclick='swap("+'"'+'Lupus Rex'+'"'+")'id='Lupus Rex' widith='100px' height='100px' src='Img/Lupus Rex.jpg'>  </div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'> <img onclick='swap("+'"'+'Lupus Rex'+'"'+")'id='Lupus Rex' widith='100px' height='100px' src='Img/Lupus Rex.jpg'>  </div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
                 }
                 else{
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
                 }
             break;
             case "Sk":
@@ -239,7 +243,7 @@
                 skup.push(popis)
                 localStorage.setItem("pr", skup);
                 localStorage.setItem("Brojac", rc);
-                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
+                divpopis.innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+img_naz+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"
             break;    
             default:     
 }
@@ -332,9 +336,9 @@
         
     }
     
-    function predaj(){
-        document.getElementById("divpopis").innerHTML += localStorage.getItem("Brojac");
-        document.getElementById("divpopis").innerHTML += localStorage.getItem("pr");
+    function load(){
+                let predaja=document.getElementById("predaj").style.visibility="visible"
+                let load=document.getElementById("load").style.visibility="hidden"
             Save()  
      }
 
@@ -377,7 +381,7 @@
             }
             }
             if(localStorage.getItem("pr")!=[]){
-            document.getElementById("divpopis").innerHTML+="<div class='flex-container' id='"+counter+"'><div><label>"+popis+"</label></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+popis+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"            
+            document.getElementById("divpopis").innerHTML+="<div class='flex-container' id='"+counter+"'><div><p>"+popis+"</p></div><div><img onclick='swap("+String('"'+popis+'"')+")'id='"+popis+"' widith='100px' height='100px' src='Img/"+popis+".jpg'></div><div><input type='checkbox'checked onchange='prikaz("+counter+","+String('"'+popis+'"')+","+String('"'+e+'"')+")'></div></div>"            
             }
         }
 }
@@ -385,6 +389,9 @@
         function fokus(){
             window.open("file:///C:/Users/neno/Documents/Eldfall%20chronicles/pr.html")
  
+     }
+     function predaj(){
+            window.open("file:///C:/Users/neno/Desktop/Git_Clone_Eldfall_Chrnoicles/Eldfall_Chronicles/Eldfall%20chronicles/Battle.html ","_blank")
      }
 
 
@@ -411,9 +418,7 @@ function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,in
 
   this.nationality = "English";
 }
-const Char1=Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
-
-</script>
-
+    const Char1=Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
+    </script>
 </body>
 </html>

@@ -9,6 +9,7 @@
     div{
         margin: 10px;
     }
+    
     img:hover{
         width: 400;
         height: 400px;
@@ -36,9 +37,11 @@
         width: 130px;
         height: 33px;
         text-align: center;
+        font-size: 10px;
     }
-    td{
+    .naslov{
         border-bottom: 1px solid black;
+        font-size: 10px;    
     }
 
 </style>
@@ -58,16 +61,35 @@
        naz=localStorage.getItem("pr").split(",")[i];
 
        document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
-        "<div><table><tr><td>Traits</td></tr><tr><td rowspan='2'>Tobias</td><tr></tr></tr></table></div>"+
-        "<div><table><tr><td>Skills</td></tr><tr><td rowspan='2'>A</td><tr></tr></tr></table></div>"+
-        "<div><table><tr><td>Spellcraft/Combat Art</td></tr><tr><td rowspan='2'>A</td><tr></tr></tr></table></div>"+
-        
+        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td onclick='desc(this)' rowspan='2'>WEAKENING</td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Skills</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Spellcraft/Combat Art</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Stratagems</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
         "</div>"           
             
    }
    console.log(skup)
-
 }
+    let perv=0
+    function swap(naz){
+        if(perv==1){
+            zam=document.getElementById(naz).src="Img/"+naz+".jpg"
+            perv=0
+        }
+        else{
+            zam=document.getElementById(naz).src="Img/"+naz+"1.jpg"
+            perv=1
+        }
+        
+    }
+    function desc(e){
+        localStorage.setItem("Desc",e.innerHTML)
+        window.open("List.html","_blank")
+        console.log(localStorage.getItem("Desc"))
+
+
+        
+    }
 </script>
 </body>
 </html>

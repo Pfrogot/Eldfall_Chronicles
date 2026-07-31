@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<style>
+</style>
+<body onload="lociraj()">
+<div class="container">
+<div class="row">
+<div class="col-sm-2" id="ACUTE SENSES">
+<h3>ACUTE SENSES</h3>
+<p>This model may perform Perceive Actions using AG instead of INT. Its Awareness increases by 1 space. When Dodging without LoS, its AG is not halved.</p>
+</div>
+
+<div class="col-sm-2" id="ADVANTAGE (X)">
+<h3>ADVANTAGE (X)</h3>
+<p>Once per Activation Sequence, this model may reroll any number of dice (once) during an Attack Action against a target with the (X) characteristic (Size, Class, Trait, etc.).</p>
+</div>
+
+<div class="col-sm-2" id="AFFINITY (ELEMENT)">
+<h3>AFFINITY (ELEMENT)</h3>
+<p>This model can cast (Element) Spells. (For example: Element = Fire, Water, Profane, etc.)</p>
+</div>
+
+<div class="col-sm-2" id="ARMOR-PIERCING">
+<h3>ARMOR-PIERCING</h3>
+<p>When making a DMG roll for a Hit with this Trait, add only half the target’s ARM value.</p>
+</div>
+
+<div class="col-sm-2" id="BEAST">
+<h3>BEAST</h3>
+<p>This Trait has no particular effect.</p>
+</div>
+
+<div class="col-sm-2" id="BLEED">
+<h3>BLEED</h3>
+<p>If a model suffers a Wound with this Trait, it enters Bleeding (State).</p>
+</div>
+
+</div>
+
+<div class="row">
+<div class="col-sm-2" id="BRUTE">
+<h3>BRUTE</h3>
+<p>This model gains +1 STK when using Items with the Two-Handed (Trait) and ignores Two-Handed restrictions.</p>
+</div>
+
+
+
+<div class="col-sm-2" id="BURN (X)">
+<h3>BURN (X)</h3>
+<p>If a model suffers a Wound with this Trait, the attacker may perform X DMG rolls with ARM value 0. Each successful roll causes a Wound. If this Wound causes the model to become Dead (State), it is removed from the field.</p>
+</div>
+
+<div class="col-sm-2" id="CLEAVE">
+<h3>CLEAVE</h3>
+<p>If a model suffers a Wound with this Trait, it suffers an additional Wound. (Berserkers can perform a T roll for each Wound to negate it.)</p>
+</div>
+
+<div class="col-sm-2" id="CONSTRUCT">
+<h3>CONSTRUCT</h3>
+<p>This model is unaffected by Surprise Attack, Stagger, Vampirism, Mindgame, and Burn. It is immune to Charm and Toxic Environment. It cannot become Panicked, Bleeding, Poisoned, Weakened, or Confused. Abilities allowing attackers to regain HP after dealing a Wound do not affect it. It cannot regain HP from Spells or Skills without the Earth Element. If its HP reaches 0, it is removed from the field.</p>
+</div>
+
+<div class="col-sm-2" id="CONTINUOUS">
+<h3>CONTINUOUS</h3>
+<p>An effect with this Trait remains in play until the end of the Quest or until removed with a certain other effect, regardless of other imposed time durations (Sorcery, Enchantment, etc.).</p>
+</div>
+
+<div class="col-sm-2" id="CRIPPLING">
+<h3>CRIPPLING</h3>
+<p>If a model suffers a Wound with this Trait, it must perform a T roll. A failed roll causes it to become Crippled (State).</p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-2" id="DEMON">
+<h3>DEMON</h3>
+<p>When this model deals a Wound, the target must perform an M roll. A failed roll causes the target to become Panicked (State) until the end of the turn. A Critical Hit automatically Panics the target until the end of the turn. This model’s Attack receives a +4 modifier against a Panicked target. This Trait does not affect models with the Demon Trait.</p>
+</div>
+<div class="col-sm-2" id="DUELIST">
+<h3>DUELIST</h3>
+<p>The target of this model’s Attack cannot use Combat Arts of level III or lower.</p>
+</div>
+<div class="col-sm-2" id="ELEMENTAL">
+<h3>ELEMENTAL</h3>
+<p>This model is unaffected by the Stagger, Vampirism, and Mindgame Traits, the Charm Skill, and Toxic Environment. It cannot enter Bleeding, Poisoned, or Weakened (States). If its HP reaches 0, it is removed from the field.</p>
+</div>
+<div class="col-sm-2" id="ELEMENTAL ESSENCE (ELEMENT)">
+<h3>ELEMENTAL ESSENCE (ELEMENT)</h3>
+<p>This model is unaffected by Effects from (Element) Attacks (it still suffers damage as normal). It deals (Element) Magical damage with Melee Attacks using Natural Weapons.</p>
+</div>
+<div class="col-sm-2" id="FAMILIAR">
+<h3>FAMILIAR</h3>
+<p>When a creature with this Trait is summoned by a Conjuration Spell, the caster gains additional Abilities and Stat Modifiers listed on the creature’s profile. If the caster would take damage and suffer Wounds, the familiar may be removed instead (if multiple, the player chooses which). Creatures with this Trait have no Summoning Limit, but the caster may control only one of each named creature. Note: Familiars are not considered full models, but their miniatures may be used as visual elements. Some familiars have individual miniatures, while others are attached to the caster’s. The caster gains the familiar’s Abilities and modifiers only if the familiar is summoned, regardless of attached miniatures.</p>
+</div>
+<div class="col-sm-2" id="FEARLESS">
+<h3>FEARLESS</h3>
+<p>This model cannot become Panicked (State).</p>
+</div>
+</div>
+
+<div class="row">
+
+<div class="col-sm-2" id="FOCUS">
+<h3>FOCUS</h3>
+<p>Spells or Items with this Trait do not require a target when declaring an Attack or Assist. Instead, the caster or user becomes the center of the effect, and models within the caster’s Casting Aura are affected by the Spell or Item.</p>
+</div>
+
+<div class="col-sm-2" id="FROSTBITE">
+<h3>FROSTBITE</h3>
+<p>If a model suffers a Wound with this Trait, it must perform a single Toughness roll, regardless of the number of Hits. On a failed roll, the model suffers an additional Wound.</p>
+</div>
+
+<div class="col-sm-2" id="IGNORE ARMOR">
+<h3>IGNORE ARMOR</h3>
+<p>A Hit with this Trait reduces the target’s ARM to 0 for the DMG roll duration.</p>
+</div>
+
+<div class="col-sm-2" id="IGNORE SHIELD">
+<h3>IGNORE SHIELD</h3>
+<p>Attacks with this Trait ignore the effects of Shields.</p>
+</div>
+
+<div class="col-sm-2" id="INCORPOREAL">
+<h3>INCORPOREAL</h3>
+<p>The PW of a Hit without the Spell Type or Burn (Trait) against this model is halved. This model ignores Environment rules, Movement penalties, and cannot become Engaged (State).</p>
+</div>
+
+<div class="col-sm-2" id="INSPIRING I">
+<h3>INSPIRING I</h3>
+<p>Other allied models within this model’s Awareness and with the same Affiliation gain +6 M.</p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-2" id="INTIMIDATING">
+<h3>INTIMIDATING</h3>
+<p>Models in the Panicked (State) with LoS towards this model suffer -6 M.</p>
+</div>
+
+<div class="col-sm-2" id="KNOCKBACK (X)">
+<h3>KNOCKBACK (X)</h3>
+<p>During the Resolution Step, a model Hit with this Trait is moved for X spaces away from the attacker. The direction is the attacker’s choice. This Trait does not affect models two or more Sizes larger than the attacker.</p>
+</div>
+
+<div class="col-sm-2" id="KNOCKDOWN">
+<h3>KNOCKDOWN</h3>
+<p>A model that suffers a Hit with this Trait becomes Crouched (State). It does not affect models two or more Sizes larger than the attacker.</p>
+</div>
+
+<div class="col-sm-2" id="MANA COST (X)">
+<h3>MANA COST (X)</h3>
+<p>To cast a Spell with this Trait, the caster must spend Mana Counters equal to the X value.</p>
+</div>
+
+<div class="col-sm-2" id="MENACING">
+<h3>MENACING</h3>
+<p>Models with LoS to this model suffer a -2 M modifier for every level of this ability.</p>
+</div>
+
+<div class="col-sm-2" id="MINDGAME">
+<h3>MINDGAME</h3>
+<p>A Dodge against an Attack with this Trait must use INT instead of AG. If a model suffers a Hit, it must perform an INT roll instead of the attacker making a DMG roll. A failed roll applies the Attack’s Effects and deals damage.</p>
+</div>
+</div>
+
+<div class="row">
+
+<div class="col-sm-2" id="OBSTACLE (X)">
+<h3>OBSTACLE (X)</h3>
+<p>Models cannot move or draw LoS through this scenery. An obstacle can be removed if condition (X) is resolved. If (X) includes HP and ARM, it can be targeted and Attacked, with ARM and HP working as for any other model.</p>
+</div>
+
+<div class="col-sm-2" id="POISON">
+<h3>POISON</h3>
+<p>I: Weak Poison; If a model suffers a Wound with this Trait, it becomes Weakened (State) until its next Strategic Phase.<br>II: Strong Poison; The model also becomes Poisoned (State).</p>
+</div>
+
+<div class="col-sm-2" id="RESISTANCE (X)">
+<h3>RESISTANCE (X)</h3>
+<p>I: The PW of a Hit with (X) Type or Trait against this model is halved.<br>II: Hits and Effects from an Attack with (X) Type or Trait are negated.</p>
+</div>
+
+<div class="col-sm-2" id="RESOURCEFUL">
+<h3>RESOURCEFUL</h3>
+<p>This model may receive 1 additional Upgrade for each level of this Trait.</p>
+</div>
+
+<div class="col-sm-2" id="RICOCHET (X)">
+<h3>RICOCHET (X)</h3>
+<p>When a model is hit by an Attack with this Trait, the nearest enemy model within 2 spaces is also hit by the same Attack. This effect can repeat up to X times per Activation Sequence but cannot target the same model more than once. If multiple enemies are equidistant from the hit model, they all suffer this Effect.</p>
+</div>
+
+<div class="col-sm-2" id="SPELLBOUND (X)">
+<h3>SPELLBOUND (X)</h3>
+<p>A model or Item with this Trait is enchanted by the Enchantment Spell listed in brackets. The Spell remains active for the entire game.</p>
+</div>
+</div>
+
+<div class="row">
+
+<div class="col-sm-2" id="STAGGER">
+<h3>STAGGER</h3>
+<p>A model that suffers a Hit with this Trait loses 1 AP (until the end of the turn). This Trait does not affect models two or more Sizes larger than the attacker.</p>
+</div>
+
+<div class="col-sm-2" id="STUN">
+<h3>STUN</h3>
+<p>A model that suffers a Wound with this Trait must perform a T roll. If failed, the model loses all AP (until the end of the turn).</p>
+</div>
+
+<div class="col-sm-2" id="SURPRISE ATTACK">
+<h3>SURPRISE ATTACK</h3>
+<p>An Attack with this Trait halves the target model’s OFF, DEF, ACC, AG, and INT until the end of the Activation Sequence.</p>
+</div>
+
+<div class="col-sm-2" id="SURVIVAL (X ENVIRONMENT)">
+<h3>SURVIVAL (X ENVIRONMENT)</h3>
+<p>This model is unaffected by X Environment.</p>
+</div>
+
+<div class="col-sm-2" id="SWEEP">
+<h3>SWEEP</h3>
+<p>I: On a successful Attack roll, all models within the same space and adjacent spaces within LoS and Melee Weapon RCH suffer a Hit.<br>II: On a successful Attack roll, all models within the same space and adjacent spaces within Melee Weapon RCH suffer a Hit.</p>
+</div>
+
+<div class="col-sm-2" id="TACTICIAN">
+<h3>TACTICIAN</h3>
+<p>The Deployment Zone of the party in which this model is present is extended for 2 spaces (towards the middle of the field).</p>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-2" id="TARGETLESS">
+<h3>TARGETLESS</h3>
+<p>In the Active Role, an Attack with this Trait does not require a model as a target and can target a space instead. When targeting a space with a Spell with Casting Aura and AoE: Blast L, both spaces must be within the Casting Aura.</p>
+</div>
+
+<div class="col-sm-2" id="THROWING">
+<h3>THROWING</h3>
+<p>An Item with this Trait enables a Ranged Attack with RCH equal to the user’s halved T. STK can be up to the Item’s QTY. Upon use, the Item is removed, even if the Attack is unsuccessful. If the Attack incapacitates or kills the target, the Item can be recovered by moving to the same space as the target.</p>
+</div>
+
+<div class="col-sm-2" id="TRAMPLE">
+<h3>TRAMPLE</h3>
+<p>When this model declares Run, it can move through any model of smaller Size. Each model it moves through or touches suffers a Hit with Knockdown (Trait) and PW equal to this model’s T. (Note: The Reacting model can avoid the Hit with a successful Dodge.)</p>
+</div>
+
+<div class="col-sm-2" id="UNDEAD">
+<h3>UNDEAD</h3>
+<p>I: Lesser; This model cannot be affected by Poisoned, Weakened, Bleeding, or Panicked. Spells with Mindgame cannot target or affect it. Healing-type Spells of the Divine Element do not restore any HP but instead, deal 15 PW damage to it. If this model’s HP reaches 0, it becomes Dead.<br>II: Greater; It may voluntarily pass or fail M rolls (except in the case of a Confrontation). If a Leader with this Trait becomes Incapacitated or Dead, it can still use its Stratagems.</p>
+</div>
+
+<div class="col-sm-2" id="UNKEEN">
+<h3>UNKEEN</h3>
+<p>If a model would suffer a Wound with this Trait, it must first perform a T roll. A failed roll causes the Wound, while a successful roll negates it.</p>
+</div>
+
+<div class="col-sm-2" id="UNSTOPPABLE">
+<h3>UNSTOPPABLE</h3>
+<p>If the target of an Attack Action is smaller, Confrontation does not occur. Successful Attack rolls from either model do not block the other.</p>
+</div>
+</div>
+
+<div class="row">
+    
+<div class="col-sm-2" id="UNWIELDY">
+<h3>UNWIELDY</h3>
+<p>When used by a Size: Medium or a smaller model, STK of this Item can never exceed 1. When performing an Attack with this Item while not Mounted, the model may reroll 1 Attack roll once.</p>
+</div>
+
+<div class="col-sm-2" id="VIGILANCE">
+<h3>VIGILANCE</h3>
+<p>This model is immune to the Surprise Attack Trait and has LoS in all directions (has no Back arc).</p>
+</div>
+
+<div class="col-sm-2" id="WATCHFUL">
+<h3>WATCHFUL</h3>
+<p>This model receives double AP in its Reactive Role.</p>
+</div>
+
+<div class="col-sm-2" id="WEAKENING">
+<h3>WEAKENING</h3>
+<p>If this model suffers a Wound with this Trait, it becomes Weakened (State).</p>
+</div>
+</div>
+
+<script>
+    function lociraj(){
+        console.log(localStorage.getItem("Desc"))
+        document.getElementById(localStorage.getItem("Desc")).scrollIntoView({ behavior: 'smooth', block: 'center' });
+        document.getElementById(localStorage.getItem("Desc")).style.textDecoration = "underline";
+        document.getElementById(localStorage.getItem("Desc")).style.color = "red";
+        setTimeout(()=> {
+        document.getElementById(localStorage.getItem("Desc")).style.textDecoration = "none";
+        document.getElementById(localStorage.getItem("Desc")).style.color = "black";
+        }, 3000);
+    }
+</script>
+</body>
+</html>

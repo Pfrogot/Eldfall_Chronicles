@@ -395,7 +395,7 @@
      }
 
 
-// Constructor function for Person Eosects
+
 function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {
   this.name = name;
   this.affiliation = affiliation;
@@ -413,12 +413,13 @@ function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,in
   this.m = m;
   this.limit = limit;
   this.cost = cost;
-  this.race = "Human";
 
 
   this.nationality = "English";
 }
-    const Char1=Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
+    let Char=new Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
+    let is=Char
+    console.log(is.name)
     </script>
 </body>
 </html>

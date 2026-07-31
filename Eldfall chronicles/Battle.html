@@ -35,9 +35,10 @@
         border: 1px solid black;
         width: 130px;
         height: 33px;
+        text-align: center;
     }
-    .naslov{
-        border-bottom: 1px solid red;
+    td{
+        border-bottom: 1px solid black;
     }
 
 </style>
@@ -46,7 +47,8 @@
     <div id="divpopis"></div>
 
 
-    <table><tr><td class="naslov">Traits</td></tr><tr><td></td></tr><tr><th rowspan="2">Tobias</th></tr></table>
+    <table><tr><td class="naslov">Traits</td></tr><tr><td rowspan="2">Tobias</td></tr></table>
+
 <script>
    let skup=[]
    let naz
@@ -56,9 +58,9 @@
        naz=localStorage.getItem("pr").split(",")[i];
 
        document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
-        "<div><table><tr><td>Traits</td></tr><tr><td></td></tr><tr><th rowspan='2'>Tobias</th></tr></table></div>"+
-        "<div><table><tr><td>Skills</td></tr><tr><td></td></tr><tr><th rowspan='2'></th></tr></table></div>"+
-        "<div><table><tr><td>Spellcraft/Combat Art</td></tr><tr><td></td></tr><tr><th rowspan='2'></th></tr></table></div>"+
+        "<div><table><tr><td>Traits</td></tr><tr><td rowspan='2'>Tobias</td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td>Skills</td></tr><tr><td rowspan='2'>A</td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td>Spellcraft/Combat Art</td></tr><tr><td rowspan='2'>A</td><tr></tr></tr></table></div>"+
         
         "</div>"           
             

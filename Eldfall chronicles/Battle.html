@@ -29,6 +29,9 @@
         width: 110px;
         
     }
+    td{
+        text-align: center;
+    }
     h4{
         font-size: 17px;
     }
@@ -52,21 +55,97 @@
 <script>
    let skup=[]
    let naz
+            let Char_Abi=[] 
    function Ucitaj(){
-   for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
-       skup.push(localStorage.getItem("pr").split(",")[i]);
-       naz=localStorage.getItem("pr").split(",")[i];
 
-       document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
-        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td onclick='desc(this)' rowspan='2'>WEAKENING</td><tr></tr></tr></table></div>"+
-        "<div><table><tr><td class='naslov'>Skills</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
-        "<div><table><tr><td class='naslov'>Spellcraft/Combat Art</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
-        "<div><table><tr><td class='naslov'>Stratagems</td></tr><tr><td rowspan='2'></td><tr></tr></tr></table></div>"+
-        "</div>"           
-            
-   }
-   console.log(skup)
+            for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
+                Char_Abi[i] = [];
+                for (let j = 0; j < 1; j++) {
+                    for (const [key, value] of Object.entries(Eos_Char)||Object.entries(Hl_Char)||Object.entries(Cot_Char)||Object.entries(Sk_Char)) {
+                    if(key==localStorage.getItem("pr").split(",")[i]){
+                        Char_Abi[i][j] = value.traits;
+                        Char_Abi[i][j+1] = value.skills;
+                        Char_Abi[i][j+2] = value.spellcraft_combat_art;
+                        Char_Abi[i][j+3] = value.stratagems;
+    }
 }
+} 
+}
+console.log(Char_Abi[0][0][0])
+   for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
+        skup.push(localStorage.getItem("pr").split(",")[i]);
+        naz=localStorage.getItem("pr").split(",")[i];
+        document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
+        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td rowspan='2' id='traits"+i+"'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Skills</td></tr><tr><td rowspan='2' id='skills"+i+"'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Spellcraft/Combat Art</td></tr><tr><td rowspan='2' id='spellcraft"+i+"'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Stratagems</td></tr><tr><td rowspan='2' id='stratagems"+i+"'></td><tr></tr></tr></table></div>"+
+        "</div>"       
+            }
+        for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
+            let trenutno="traits"+i
+            let trenutnoj="skills"+i
+            let trenutnod="spellcraft"+i
+            let trenutnot="stratagems"+i
+        for(let j = 0; j < Char_Abi[i].length; j++){
+            for (let k = 0; k < Char_Abi[i][j].length; k++) {
+                document.getElementById(trenutno).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
+                document.getElementById(trenutnoj).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
+                document.getElementById(trenutnod).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
+                document.getElementById(trenutnot).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
+    }
+}
+            }
+console.log(Char_Abi[0]) 
+console.log(Char_Abi[0].length)
+
+
+
+}
+
+
+
+function Hero_stats(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {
+  this.name = name;
+  this.affiliation = affiliation;
+  this.size = size;
+  this.stamina = stamina;
+  this.move_sp = move_sp;
+  this.armor = armor;
+  this.health = health;
+  this.off = off;         
+  this.def = def;
+  this.acc = acc;
+  this.int = int;
+  this.ag = ag;
+  this.t = t;
+  this.m = m;
+  this.limit = limit;
+  this.cost = cost;
+}
+function Hero_Abilities(skills,traits,spellcraft_combat_art,stratagems) {
+  this.traits = traits;
+  this.skills = skills;
+  this.spellcraft_combat_art = spellcraft_combat_art;
+  this.stratagems = stratagems;
+}
+    let Char=new Hero_stats("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
+    let Char1=new Hero_Abilities(["RESOURCEFUL", "VIGILANCE"], ["DASH"], ["FENCING"], ["ADVANCE","BACK TO BACK","BRAZEN ASSAULT","EVASION TACTICS"])
+
+
+
+    const Eos_Char = { "Clab Champion": new Hero_Abilities(["DASH"],["RESOURCEFUL", "VIGILANCE"],["FENCING"], ["ADVANCE","BACK TO BACK","BRAZEN ASSAULT","EVASION TACTICS"])
+    , "Bushi Attendant": new Hero_Abilities([], [], [], [])
+    ,"Onitaishi": new Hero_Abilities(["Finishing Strike","Taunt"], ["Fearless", "Advantage"], ["Fencing"], []),
+    "Kitsune Spellmaiden": new Hero_Abilities(["Charm"], ["Affinity","Acute Senses","Vigilance"], ["Kitsune no Mai","Purification Rites"], [])
+    ,"Musha Bowmaster": new Hero_Abilities([], [], [], [])
+    ,"Musha Blademaster": new Hero_Abilities([], [], [], [])
+    ,"Scolar of the True Word": new Hero_Abilities([], [], [], [])
+    ,"Great Gaurd": new Hero_Abilities([], [], [], [])
+    ,"Seigen of the Keshobarai": new Hero_Abilities([], [], [], [])
+    };
+   
+
     let perv=0
     function swap(naz){
         if(perv==1){
@@ -82,11 +161,12 @@
     function desc(e){
         localStorage.setItem("Desc",e.innerHTML)
         window.open("List.html","_blank")
-        console.log(localStorage.getItem("Desc"))
-
-
         
     }
+
+
+
+
 </script>
 </body>
 </html>

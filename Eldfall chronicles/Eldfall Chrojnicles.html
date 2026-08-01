@@ -251,7 +251,6 @@
     function prikaz(br,dr,e){
         let pr=document.getElementById(br)
         pr.remove()
-        console.log(skup)
                 for (let i = 0; i <= skup.length; i++) {
                     if(dr==skup[i]){
                         skup.splice(i,1)
@@ -351,7 +350,6 @@
         let e
         if(localStorage.getItem("pr")==null){
             skup=[]
-            console.log("Nema nista")
         }
         else{
         for(i=0;i<localStorage.getItem("pr").split(",").length;i++){
@@ -393,33 +391,6 @@
      function predaj(){
             window.open("Battle.html","_blank")
      }
-
-
-
-function Hero(name, affiliation,size,stamina,move_sp,armor,health,off,def,acc,int,ag,t,m,limit,cost) {
-  this.name = name;
-  this.affiliation = affiliation;
-  this.size = size;
-  this.stamina = stamina;
-  this.move_sp = move_sp;
-  this.armor = armor;
-  this.health = health;
-  this.off = off;         
-  this.def = def;
-  this.acc = acc;
-  this.int = int;
-  this.ag = ag;
-  this.t = t;
-  this.m = m;
-  this.limit = limit;
-  this.cost = cost;
-
-
-  this.nationality = "English";
-}
-    let Char=new Hero("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
-    let is=Char
-    console.log(is.name)
     </script>
 </body>
 </html>

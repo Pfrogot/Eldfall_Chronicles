@@ -8,14 +8,11 @@
 <style>
     div{
         margin: 10px;
-    }
+    }s
     
     img:hover{
         width: 400;
         height: 400px;
-    }
-    input:checked{
-        margin:    10px;
     }
     .flex-container{
         display: flex;
@@ -23,13 +20,14 @@
         align-items: flex-start;
         width: 100%;
         border: 1px solid black;
-        
+        align-items: center;
     }
     p{
         width: 110px;
         
     }
     td{
+        width: 30px;
         text-align: center;
     }
     h4{
@@ -41,25 +39,41 @@
         height: 33px;
         text-align: center;
         font-size: 10px;
+        margin: 5px;
     }
     .naslov{
         border-bottom: 1px solid black;
         font-size: 10px;    
     }
+    .dot {
+  height: 75px;
+  width: 75px;
+  background-image: url("Img/Icon.png");
+  background-color: black;
+  background-repeat: no-repeat;
+
+  background-size: 100% 100%;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10px;
+}
 
 </style>
 <body onload="Ucitaj()">
-    <div id="divpopis"></div>
+    <div  id="divpopis"></div>
 
 
 <script>
-   let skup=[]
-   let naz
-            let Char_Abi=[] 
-   function Ucitaj(){
+    let skup=[]
+    let naz
 
+    
+   function Ucitaj(){
+    let Char_Stats=[] 
+    let Char_Abi=[]
             for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
                 Char_Abi[i] = [];
+                Char_Stats[i]=[] 
                 for (let j = 0; j < 1; j++) {
                     for (const [key, value] of Object.entries(Eos_Char)||Object.entries(Hl_Char)||Object.entries(Cot_Char)||Object.entries(Sk_Char)) {
                     if(key==localStorage.getItem("pr").split(",")[i]){
@@ -67,39 +81,99 @@
                         Char_Abi[i][j+1] = value.skills;
                         Char_Abi[i][j+2] = value.spellcraft_combat_art;
                         Char_Abi[i][j+3] = value.stratagems;
-    }
+                         }
+                    if(key==(localStorage.getItem("pr").split(",")[i])+"1"){
+                        Char_Stats[i][j]=value.off
+                        Char_Stats[i][j+1]=value.def
+                        Char_Stats[i][j+2]=value.acc
+                        Char_Stats[i][j+3]=value.int
+                        Char_Stats[i][j+4]=value.ag 
+                        Char_Stats[i][j+5]=value.t 
+                        Char_Stats[i][j+6]=value.m
+                    }  
+                    
+   
 }
 } 
 }
-console.log(Char_Abi[0][0][0])
+
    for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
         skup.push(localStorage.getItem("pr").split(",")[i]);
         naz=localStorage.getItem("pr").split(",")[i];
-        document.getElementById("divpopis").innerHTML+= "<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
-        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td rowspan='2' id='traits"+i+"'></td><tr></tr></tr></table></div>"+
+        if(naz=="Slayer Dragon Mounted-Lupus Rex"){
+        document.getElementById("divpopis").innerHTML+="<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div><div><img onclick='swap("+'"'+'Lupus Rex'+'"'+")'id='Lupus Rex' widith='100px' height='100px' src='Img/Lupus Rex.jpg'> </div>"+
+        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td rowspan='2' id='traits"+i+"'></td><tr></tr></tr></table></div>"+    
         "<div><table><tr><td class='naslov'>Skills</td></tr><tr><td rowspan='2' id='skills"+i+"'></td><tr></tr></tr></table></div>"+
         "<div><table><tr><td class='naslov'>Spellcraft/Combat Art</td></tr><tr><td rowspan='2' id='spellcraft"+i+"'></td><tr></tr></tr></table></div>"+
         "<div><table><tr><td class='naslov'>Stratagems</td></tr><tr><td rowspan='2' id='stratagems"+i+"'></td><tr></tr></tr></table></div>"+
-        "</div>"       
+        "</div>"+
+        "<div class='flex-container'></div>"
+        }                                               
+        else{
+        document.getElementById("divpopis").innerHTML+="<div class='flex-container'><div><p>"+naz+"</p></div><div><img onclick='swap("+String('"'+naz+'"')+")'id='"+naz+"' widith='100px' height='100px' src='Img/"+naz+".jpg'></div>"+
+        "<div><table><tr><td class='naslov'>Traits</td></tr><tr><td rowspan='2' id='traits"+i+"'></td><tr></tr></tr></table></div>"+    
+        "<div><table><tr><td class='naslov'>Skills</td></tr><tr><td rowspan='2' id='skills"+i+"'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Spellcraft/Combat Art</td></tr><tr><td rowspan='2' id='spellcraft"+i+"'></td><tr></tr></tr></table></div>"+
+        "<div><table><tr><td class='naslov'>Stratagems</td></tr><tr><td rowspan='2' id='stratagems"+i+"'></td><tr></tr></tr></table></div>"+
+        "</div>"+
+        "<div class='flex-container'>"+
+            "<table style='width: 200px;'><tr><td>OFF</td><td>DEF</td><td>ACC</td><td>INT</td><td>AG</td><td>T</td><td>M</td></tr>"+
+            "<tr id='stats'></tr></table>"+
+            
+            "<table style='width: 200px;'>"+
+                "<tr>"+
+                "<td>Bleeding<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Blinded<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Confused<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Crippled<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Imobilized<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Incapacitated<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Slowed<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Weakend<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Poisoned<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Panicked<input type='checkbox' name='' onchange='States()'></td>"+
+                "<td>Dead<input type='checkbox' name='' onchange='States()'></td>"+
+                "</tr>"+
+            "</table>"+
+            "<span class='dot'></span><span class='dot'></span></div>"
+       
+        }
+    }
+
+for(let a = 0; a < Char_Abi.length;a++ ){
+            let trenutno="traits"+a
+            let trenutnoj="skills"+a
+            let trenutnod="spellcraft"+a
+            let trenutnot="stratagems"+a
+    for(let b = 0; b < Char_Abi[a].length; b++){
+        for(let c = 0; c < Char_Abi[a][b].length; c++) {
+            if(Char_Abi[a][b][c]!=undefined){
+                switch(b) {
+                    case 0:
+                        document.getElementById(trenutno).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[a][b][c] +"</p>"
+                    break;
+                    case 1:
+                        document.getElementById(trenutnoj).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[a][b][c] +" </p>"
+                    break;
+                    case 2:
+                        document.getElementById(trenutnod).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[a][b][c] +" </p>"
+                    break;
+                    case 3:
+                        document.getElementById(trenutnot).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[a][b][c] +" </p>"
+                    break;
+
+                }
             }
-        for (let i = 0; i < localStorage.getItem("pr").split(",").length; i++) {
-            let trenutno="traits"+i
-            let trenutnoj="skills"+i
-            let trenutnod="spellcraft"+i
-            let trenutnot="stratagems"+i
-        for(let j = 0; j < Char_Abi[i].length; j++){
-            for (let k = 0; k < Char_Abi[i][j].length; k++) {
-                document.getElementById(trenutno).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
-                document.getElementById(trenutnoj).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
-                document.getElementById(trenutnod).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
-                document.getElementById(trenutnot).innerHTML += "<p onclick='desc(this)'>"+Char_Abi[i][j][k] +" </p>"
+            
+        }
     }
 }
-            }
-console.log(Char_Abi[0]) 
-console.log(Char_Abi[0].length)
+for(let a = 0; a < Char_Stats.length;a++){
 
-
+    for(let b = 0; b < Char_Stats[a].length; b++){
+    document.getElementById("stats").innerHTML += "<td>"+Char_Stats[a][b]+" </td>"
+}
+}
 
 }
 
@@ -135,6 +209,7 @@ function Hero_Abilities(skills,traits,spellcraft_combat_art,stratagems) {
 
 
     const Eos_Char = { "Clab Champion": new Hero_Abilities(["DASH"],["RESOURCEFUL", "VIGILANCE"],["FENCING"], ["ADVANCE","BACK TO BACK","BRAZEN ASSAULT","EVASION TACTICS"])
+    ,"Clab Champion1":new Hero_stats("Clan champion","EOS","Medium",2, 5, 5, 3, 16, 12, 12, 13, 10, 13, 17,1,23)
     , "Bushi Attendant": new Hero_Abilities([], [], [], [])
     ,"Onitaishi": new Hero_Abilities(["Finishing Strike","Taunt"], ["Fearless", "Advantage"], ["Fencing"], []),
     "Kitsune Spellmaiden": new Hero_Abilities(["Charm"], ["Affinity","Acute Senses","Vigilance"], ["Kitsune no Mai","Purification Rites"], [])
@@ -144,8 +219,16 @@ function Hero_Abilities(skills,traits,spellcraft_combat_art,stratagems) {
     ,"Great Gaurd": new Hero_Abilities([], [], [], [])
     ,"Seigen of the Keshobarai": new Hero_Abilities([], [], [], [])
     };
-   
-
+        const Hl_Char = { "Expeditionardy Hireophant": new Hero_Abilities(["DASH"],["RESOURCEFUL", "VIGILANCE"],["FENCING"], ["ADVANCE","BACK TO BACK","BRAZEN ASSAULT","EVASION TACTICS"])
+    , "Citadel Guard": new Hero_Abilities([], [], [], [])
+    ,"Flameshaper": new Hero_Abilities(["Finishing Strike","Taunt"], ["Fearless", "Advantage"], ["Fencing"], []),
+    "Helrin Expatriate": new Hero_Abilities(["Charm"], ["Affinity","Acute Senses","Vigilance"], ["Kitsune no Mai","Purification Rites"], [])
+    ,"Flameweaver Errant": new Hero_Abilities([], [], [], [])
+    ,"Flameweaver Noble": new Hero_Abilities([], [], [], [])
+    ,"Paladin of the order": new Hero_Abilities([], [], [], [])
+    ,"Eonian Runner": new Hero_Abilities([], [], [], [])
+    ,"Anari Erudite Prodigy": new Hero_Abilities([], [], [], [])
+    };
     let perv=0
     function swap(naz){
         if(perv==1){
@@ -163,10 +246,6 @@ function Hero_Abilities(skills,traits,spellcraft_combat_art,stratagems) {
         window.open("List.html","_blank")
         
     }
-
-
-
-
 </script>
 </body>
 </html>
